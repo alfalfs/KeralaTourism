@@ -1,0 +1,79 @@
+body {
+    margin: 0%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    position: absolute;
+    padding-top: 15px;
+    color: rgba(0, 255, 34, 0.555);
+}
+
+header a {
+    color: rgb(97, 172, 27);
+    text-decoration: none;
+    margin-right: 100%;
+    font-size: 24px;
+    font-family: 'Tahoma', Geneva, Verdana, sans-serif;
+    transition: 0.5s ease-in-out;
+    text-align: justify;
+}
+
+header a:hover {
+    color: rgb(84, 131, 40);
+}
+
+main {
+    background-image: url(./images/index.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main h1 {
+    margin: 0;
+    font-size: 80px;
+    color: rgb(0, 0, 0);
+    mix-blend-mode: overlay;
+    animation: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.navbar {
+    background: transparent;
+    text-align: right;
+    text-decoration: none;
+}
+
+#loginimage {
+    background-image: url(./images/empty-road-between-forest-3633950.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: yellowgreen;
+}
+
+.glow {
+    font-size: 80px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+}
