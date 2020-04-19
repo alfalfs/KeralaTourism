@@ -9,6 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <!--Custom Css-->
     <link rel="stylesheet" href="./sytle.css" />
 </head>
@@ -46,26 +48,37 @@
     <div id="loginimage">
         <div class="container">
             <div class="row">
-                <div class="col"></div>
+                <div class="col">
+                </div>
                 <div class="col">
                     <h2>SIGN UP</h2>
-                    <form action="/action_page.php" class="needs-validation" novalidate>
+                    <form id="regForm" onsubmit="validateRegistartionForm" action="/login.html" class="needs-validation" novalidate>
                         <div class="form-group">
                             <label for="uname">Username:</label>
-                            <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
-                            <div class="valid-feedback">Valid.</div>
+                            <input type="text" class="form-control" id="uname" placeholder="Enter username" onchange="return validateName(this.value);" name="uname" required minlength="3">
+                            <span style="background-color:rgb(255, 255, 255);" id="nmsg"></span>
+                            <div class="valid-feedback">Filled</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
-                            <label for="uname">Email-id:</label>
-                            <input type="email" class="form-control" id="uemail" placeholder="Enter email-id" name="uemail" required>
-                            <div class="valid-feedback">Valid.</div>
+                            <label for="email">Email-id:</label>
+                            <input type="email" class="form-control" id="uemail" placeholder="Enter email-id" name="uemail" onchange="return validateEmailid(this.value);" required>
+                            <span style="background-color:rgb(255, 255, 255);" id="emsg"></span>
+                            <div class="valid-feedback">Filled.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="text" class="form-control" id="uphone" placeholder="Enter phone" name="uphone" onkeypress="return numbersOnly(event);" onchange=" return validatePhone(this.value);" required maxlength="10">
+                            <span style="background-color:rgb(255, 255, 255);" id="pmsg"></span>
+                            <div class="valid-feedback">Filled.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
-                            <div class="valid-feedback">Valid.</div>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" onkeyup="validatePassword(this.value);" required minlength="8">
+                            <span style="background-color:rgb(255, 255, 255);" id="msg"></span>
+                            <div class="valid-feedback">Filled.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                         <div class="form-group form-check">
@@ -84,26 +97,8 @@
         </div>
 
     </div>
-    <script>
-        // Disable form submissions if there are invalid fields
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Get the forms we want to add validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
+    <!--Custom Js-->
+    <script src="/script.js"></script>
 
 </body>
 
