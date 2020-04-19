@@ -1,157 +1,117 @@
-//document.getElementById("upassword").addEventListener("onchange", checkPasswordStrength);
-
-//name validation
-function validateName(input) {
-    var regExp = /^[a-zA-Z ]*$/;
-    if (regExp.test(input)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-//email validation
-function validateEmailId(input) {
-    var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (emailFormat.test(input)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-//password strength check 
-
-function checkPasswordStrength() {
-    var number = /([0-9])/;
-    var alphabets = /([a-zA-Z])/;
-    var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
-    if ($('#upassword').val().length < 8) {
-        $('#passwstatus').removeClass();
-        $('#Weak-info').addClass('text-danger font-weight-700');
-        $('#Weak-info').html("Weak (should be atleast 6 characters.)");
-    } else {
-        if ($('#upassword').val().match(number) && $('#upassword').val().match(alphabets) && $('#upassword').val().match(special_characters)) {
-            $('#passwstatus').removeClass();
-            $('#Strong-info').addClass('text-success font-weight-700');
-            $('#Strong-info').html("Strong");
-        } else {
-            $('#passwstatus').removeClass();
-            $('#Average-info').addClass('text-info font-weight-700');
-            $('#Average-info').html("Medium (should include alphabets, numbers and special characters.)");
-        }
-    }
-}
-/*
-function checkPasswordStrength() {
-    var number = /([0-9])/;
-    var alphabets = /([a-zA-Z])/;
-    var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
-    if ($('#upassword').val().length < 8) {
-
-    } else {
-        if ($('#upassword').val().match(number) && $('#password').val().match(alphabets) && $('#password').val().match(special_characters)) {
-            $('#passwstatus').removeClass();
-            $('#Strong-info').addClass('text-success font-weight-700');
-            $('#Strong-info').html("Strong");
-        } else {
-            $('#passwstatus').removeClass();
-            $('#Average-info').addClass('text-info font-weight-700');
-            $('#Average-info').html("Medium (should include alphabets, numbers and special characters.)");
-        }
-    }
-}
-*/
-//validatelogin
-function validateloginForm() {
-    //swal("Alfred test!", "Email required!", "warning");
-    //var email = document.forms["login-form"]["uemail"].value; class="form-group"
-    //var passw = document.forms["login-form"]["upassword"].value;
-    if (email == "") {
-        //swal('');
-        swal("Email fleid should not be Empty!", "Email required!", "warning");
-        document.getElementById("email").focus();
-        return false;
-    } else if (!validateEmailId(email)) {
-        swal("Email fleid should be Valid!", "Email Invalid!", "warning");
-        document.getElementById("email").focus();
-        return false;
-    } else if (passw == "") {
-        swal("Required password fleid should be filled!", "Required password!", "warning");
-        swal('Required password');
-        document.getElementById("password").focus();
-        return false;
-        /*}else if (!validatePassword(password)){
-            swal('At least 8 chars , one digit,one lower alpha char and one upper alpha char, one char within a set of special chars (@%^ etc.)');
-            document.getElementById("password").focus();
-            return false;   */
-    } else {
-        return true;
-    }
-}
+ // Disable form submissions if there are invalid fields
+ (function() {
+     'use strict';
+     window.addEventListener('load', function() {
+         // Get the forms we want to add validation styles to
+         var forms = document.getElementsByClassName('needs-validation');
+         // Loop over them and prevent submission
+         var validation = Array.prototype.filter.call(forms, function(form) {
+             form.addEventListener('submit', function(event) {
+                 if (form.checkValidity() === false) {
+                     event.preventDefault();
+                     event.stopPropagation();
+                 }
+                 form.classList.add('was-validated');
+             }, false);
+         });
+     }, false);
+ })();
+ //  user name validation
+ function validateName(input) {
+     var regExp = /^[a-zA-Z ]*$/;
+     if (regExp.test(input)) {
+         document.getElementById("nmsg").innerHTML = "Valid name format.";
+         document.getElementById("nmsg").style.color = "green";
+         return true;
+     } else {
+         document.getElementById("nmsg").innerHTML = "Invalid name format";
+         document.getElementById("nmsg").style.color = "red";
+         return false;
+     }
+ }
 
 
-//login password strength meter
-const input = document.getElementById('upassword')
-const indicator = document.getElementById('indicator')
-const text = document.getElementById('text')
+ // email validation
+ function validateEmailid(input) {
+     var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-function passCheck() {
-    const password = input.value
-    const currentSrength = {
-        lengthScores: 0,
-        complexityScores: 0,
-        caseScores: 0
-    }
-    if (password.length < 4) {
-        currentSrength.lengthScores = 0;
-    } else if (password.length > 12) {
-        currentSrength.lengthScores = 1;
-    } else {
-        currentSrength.lengthScores = input.value.length / 20;
-    }
+     if (emailFormat.test(input)) {
+         document.getElementById("emsg").innerHTML = "Valid email format.";
+         document.getElementById("emsg").style.color = "green";
+         return true;
+     } else {
+         document.getElementById("emsg").innerHTML = "Invalid email format";
+         document.getElementById("emsg").style.color = "red";
+         return false;
+     }
+ }
+ // phone number
+ function numbersOnly(e) {
+     if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
+         document.getElementById("pmsg").innerHTML = "Sorry! only numbers allowed.";
+         return false;
 
-    if (password.match(/\d/g)) {
-        currentSrength.complexityScores += 0.3;
-    }
-    if (password.match(/[a-zA-Z]/g)) {
-        currentSrength.complexityScores += 0.35;
-    }
-    if (password.match(/[\W_]/g)) {
-        currentSrength.complexityScores += 0.4;
-    }
+     } else {
+         document.getElementById("pmsg").innerHTML = "";
+         return true;
+     }
+ }
+ // phone format 
+ function validatePhone(input) {
+     var regExp = /^[6-9]\d{9}$/;
+     if (regExp.test(input)) {
+         document.getElementById("pmsg").innerHTML = "Valid Phone Format.";
+         document.getElementById("pmsg").style.color = "green";
+         return true;
+     } else {
+         document.getElementById("pmsg").innerHTML = "inValid Format";
+         document.getElementById("pmsg").style.color = "red";
+         return false;
+     }
+ }
+ //Password meter
+ function validatePassword(password) {
 
-    if (password.match(/[a-z]/g)) {
-        currentSrength.caseScores += 0.5;
-    }
-    if (password.match(/[A-Z]/g)) {
-        currentSrength.caseScores += 0.5;
-    }
+     // Do not show anything when the length of password is zero.
+     if (password.length === 0) {
+         document.getElementById("msg").innerHTML = "";
+         return;
+     }
+     // Create an array and push all possible values that you want in password
+     var matchedCase = new Array();
+     matchedCase.push("[$@$!%*#?&]"); // Special Charector
+     matchedCase.push("[A-Z]"); // Uppercase Alpabates
+     matchedCase.push("[0-9]"); // Numbers
+     matchedCase.push("[a-z]"); // Lowercase Alphabates
 
-    const scores = Math.round(
-        currentSrength.lengthScores +
-        currentSrength.complexityScores +
-        currentSrength.caseScores
-    )
-    setStrength(scores);
-}
-
-function setStrength(level) {
-    switch (level) {
-        case 0:
-            level = 'week';
-            break;
-        case 1:
-            level = 'fair';
-            break;
-        case 2:
-            level = 'good';
-            break;
-        case 3:
-            level = 'strong';
-            break;
-        default:
-            level = 'week';
-    }
-    text.innerText = level;
-    indicator.className = `pass__label pass__label--${level}`
-}
+     // Check the conditions
+     var ctr = 0;
+     for (var i = 0; i < matchedCase.length; i++) {
+         if (new RegExp(matchedCase[i]).test(password)) {
+             ctr++;
+         }
+     }
+     // Display it
+     var color = "";
+     var strength = "";
+     switch (ctr) {
+         case 0:
+         case 1:
+         case 2:
+             strength = "Very Weak Password";
+             color = "red";
+             break;
+         case 3:
+             if (pwd.value.length >= 5 && val.length <= 8)
+                 strength = "Medium Password";
+             color = "orange";
+             break;
+         case 4:
+             if (pwd.value.length >= 8)
+                 strength = "Strong Password";
+             color = "green";
+             break;
+     }
+     document.getElementById("msg").innerHTML = strength;
+     document.getElementById("msg").style.color = color;
+ }
