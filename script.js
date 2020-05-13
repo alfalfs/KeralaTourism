@@ -71,7 +71,6 @@
  }
  //Password meter
  function validatePassword(password) {
-
      // Do not show anything when the length of password is zero.
      if (password.length === 0) {
          document.getElementById("msg").innerHTML = "";
@@ -98,16 +97,16 @@
          case 0:
          case 1:
          case 2:
-             strength = "Very Weak Password";
+             strength = "Weak Password";
              color = "red";
              break;
          case 3:
-             if (pwd.value.length >= 5 && val.length <= 8)
+             if (password.length >= 5)
                  strength = "Medium Password";
              color = "orange";
              break;
          case 4:
-             if (pwd.value.length >= 8)
+             if (password.length >= 8)
                  strength = "Strong Password";
              color = "green";
              break;
