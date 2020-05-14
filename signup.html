@@ -10,7 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <!--Custom Js-->
+    <script src="/script.js"></script>
     <!--Custom Css-->
     <link rel="stylesheet" href="./sytle.css" />
 </head>
@@ -33,10 +34,10 @@
                     <a class="nav-link-active" href="signup.html">SIGNUP</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signup.html">ABOUT</a>
+                    <a class="nav-link" href="#">ABOUT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signup.html">CONTACT</a>
+                    <a class="nav-link" href="#">CONTACT</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 ">
@@ -52,7 +53,7 @@
                 </div>
                 <div class="col">
                     <h2>SIGN UP</h2>
-                    <form id="regForm" onsubmit="validateRegistartionForm" action="/login.html" class="needs-validation" novalidate>
+                    <form id="regForm" onsubmit="validateRegistartionForm" action="/login.html" class="needs-validation" validate>
                         <div class="form-group">
                             <label for="uname">Username:</label>
                             <input type="text" class="form-control" id="uname" placeholder="Enter username" onchange="return validateName(this.value);" name="uname" required minlength="3">
@@ -97,8 +98,7 @@
         </div>
 
     </div>
-    <!--Custom Js-->
-    <script src="/script.js"></script>
+    
 
 </body>
 
